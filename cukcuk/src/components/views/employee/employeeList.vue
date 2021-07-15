@@ -72,7 +72,7 @@
                 <div class="paging-record-info">Hiển thị <b>1-10/1000</b> nhân viên</div>
 
                 <Pagination 
-                :totalPages="10"
+                :totalPages="20"
                 
                 :perPage="perPage"
                 :currentPage="currentPage"
@@ -81,8 +81,7 @@
 
                 <div class="paging-record-option"><b data-v-a72348a4="">10</b> nhân viên/trang</div>
         </div>
-        <!-- chú ý tại sao không lấy option cho select-box dựa trên api-->
-        <!-- chú ý lifecycle, updated, một số hàm format-->
+      
         
        
 
@@ -210,6 +209,8 @@ export default ({
 
         //format date of birth
         DateFormat(DateOfBirth) {
+            
+         
             var newDate = new Date(DateOfBirth);
             var StringDate = newDate.getDate();
             if (StringDate < 10) StringDate = '0' + StringDate;
@@ -308,7 +309,7 @@ export default ({
             currentPage: 1,
 
             //Số lượng bản ghi được hiển thị trong 1 trang
-            perPage: 10,
+            perPage: 15,
         }
     },
 })

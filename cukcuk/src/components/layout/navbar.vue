@@ -5,10 +5,10 @@
             <div id="logo"></div>
         </div>
         <div id="Navbar_content_box">
-            <div class="navbar-item">
+            <router-link class="navbar-item" tag="li" to="/dashboard">
                 <div class="navbar-icon icon-dashboard"></div>
                 <div class="navbar-text">Tổng quan</div>
-            </div>
+            </router-link>
             <router-link class="navbar-item" tag="li" to="/report">
                 <div class="navbar-icon icon-report"></div>
                 <div class="navbar-text">Báo cáo</div>
@@ -26,9 +26,17 @@
                 <div class="navbar-text">Thiết lập hệ thống</div>
             </router-link>
         </div>
+        <button class="shortcut"/>
     </div>
-</template>
 
+</template>
+<script>
+export default {
+    methods:{
+
+    }
+}
+</script>
 <style scoped>
 #NavBar {
     width: 200px;
@@ -116,5 +124,9 @@
 
 .icon-setting {
     background-image: url('../../assets/icon/setting.png');
+}
+.shortcut{
+    width: 40px;
+    height: 40px;
 }
 </style>

@@ -11,12 +11,19 @@ table tr{
 table thead th{
     text-align: left;
     position: sticky;
+    font-family: GoogleSans-Bold;
     top: 0;
     background-color: #fff;
     border-bottom: 1px solid #bbb;
     box-shadow: 0 1px 1px -1px #bbb;
 }
-
+th{
+    top: 0;
+    background-color: #ffffff;
+    position: -webkit-sticky;
+    position: sticky;
+   
+}
 table thead{
     border-bottom: 1px solid #bbb;
 }
@@ -25,7 +32,19 @@ th,td{
     padding-left: 10px;
     padding-right: 10px;
 }
-
+td {
+    /* height: 37px;
+    border-bottom: 1px solid #bbbbbb;
+    text-align: left;
+    padding-left: 16px;
+    padding: 10px; */
+    max-width: 100px;
+    /* border-bottom-style: solid;
+    border-bottom-color: #ccc; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 th:first-child, th:last-child, td:first-child, td:last-child{
     padding-left: 16px;
 }
@@ -35,4 +54,52 @@ table tr{
 }
 table tr:hover{
     background-color: #e5e5e5;
+} 
+/* table {
+    border-collapse: collapse;
+    
+} 
+
+table thead th {
+    font-family: GoogleSans-Bold;
+    font-weight: bold;
 }
+
+table tr th {
+    height: 48px;
+    border-bottom: 1px solid #bbbbbb;
+    text-align: left;
+    padding-left: 16px;
+    padding: 10px;
+    border-bottom-style: solid;
+    border-bottom-color: #ccc;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+td {
+    height: 37px;
+    border-bottom: 1px solid #bbbbbb;
+    text-align: left;
+    padding-left: 16px;
+    padding: 10px;
+    max-width: 5px;
+    border-bottom-style: solid;
+    border-bottom-color: #ccc;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+th {
+    background-color: #ffffff;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
+
+tr:nth-child(even) {
+    background-color: #E9EBEE;
+} */

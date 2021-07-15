@@ -180,6 +180,7 @@ export default({
         if(this.employee.Salary != null){
             this.format_salary();
         }
+        this.employee.GenderName = this.format_notNaN(this.employee.GenderName);
 
         
     },
@@ -219,6 +220,9 @@ export default({
         },
         //format date để binding vào form
         DateFormat(unformatDate){
+            if(unformatDate=="NaN-NaN-NaN"){
+                return "";
+            }
             var formattedDate = new Date(unformatDate);
                 var StringMonth = formattedDate.getMonth() + 1;
                 if (StringMonth < 10) StringMonth = '0' + StringMonth;
@@ -236,10 +240,22 @@ export default({
 
         //format salary luôn theo định dạng 20,000,000 (vnđ)
         format_salary(){
+            if(this.employee.Salary ==="NaN") {
+                this.employee.Salary ="";
+                return;
+            }
+            console.log(this.employee.Salary);
             var stringSalary = new String(this.employee.Salary)
             this.employee.Salary = parseInt(stringSalary.replace(/\D/g,''),10).toLocaleString();
+            
+        
         },
-
+        //checkform not NaN
+        format_notNaN(data){
+            if(data==='NaN'){
+                return '';
+            }else return data;
+        },
         //Validate Form hợp lệ
         
         EmployeeCodeValidation(a){

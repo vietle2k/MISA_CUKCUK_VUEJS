@@ -143,6 +143,7 @@ export default({
     background-position: center;
     border:none;
     outline: none;
+    background-color: #ffffff;
 }
 
 #backward:hover {
@@ -158,6 +159,7 @@ export default({
     background-position: center;
     border:none;
     outline: none;
+    background-color: #ffffff;
 }
 
 #previous:hover {
@@ -173,6 +175,8 @@ export default({
     background-position: center;
     border:none;
     outline: none;
+    background-color: #ffffff;
+    
 }
 
 #next:hover {
@@ -188,6 +192,7 @@ export default({
     background-position: center;
     border:none;
     outline: none;
+    background-color: #ffffff;
 }
 
 #forward:hover {
