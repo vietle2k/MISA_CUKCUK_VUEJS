@@ -3,10 +3,12 @@
     <Header/>
     <Navbar/>
     <Content/>
+    <BaseToast />
   </div>
 </template>
 
 <script>
+import BaseToast from './components/base/BaseToast.vue'
 import Header from './components/layout/header.vue'
 import Navbar from './components/layout/navbar.vue'
 import Content from './components/layout/content.vue'
@@ -15,7 +17,8 @@ export default {
   components: {
     Header,
     Navbar,
-    Content
+    Content,
+    BaseToast
   }
 }
 </script>

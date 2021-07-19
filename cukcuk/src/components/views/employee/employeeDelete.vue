@@ -43,6 +43,13 @@ export default ({
             .then(res =>{
                 console.log(res);
                 this.$emit('hideConfirmBox');
+                var a = {       
+                        class: 'snackbar',
+                        icon: 'icon-tick',
+                        text: 'Bạn đã xóa nhân viên thành công'
+                    }
+                // this.AddDataToast(a);
+                this.$store.dispatch('addToast',a);
             })
             .catch(res => {
                 console.log(res);

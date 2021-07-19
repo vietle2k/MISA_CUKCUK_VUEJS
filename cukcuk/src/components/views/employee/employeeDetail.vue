@@ -130,13 +130,14 @@
                     <button id="button_save" @click="btnSave()">Lưu</button>
                 </div>
             </div>
+            <!-- <BaseToast v-if="showToast" :items="Toast" /> -->
                 
     </div>
 </template>
 
 
 <script>
-
+// import BaseToast from '../../base/BaseToast.vue'
 import axios from 'axios'
 import $ from 'jquery'
 //regular expression của email
@@ -145,6 +146,17 @@ const mailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@(
 
 export default({
     created() {
+    },
+    // components: {
+    //     BaseToast
+    // },
+    computed: {
+        // Toast(){
+        //    return this.$store.state.Toast.data;
+        // },
+        // showToast(){
+        //     return this.$store.state.Toast.showToast;
+        // }
     },
     props: {
         isShow: {
@@ -160,7 +172,7 @@ export default({
         }
     },
     mounted() {
-        
+
     },
     updated() {
         //auto focus ô input đầu tiên
@@ -185,8 +197,22 @@ export default({
         
     },
     methods: {
+        // AddDataToast(a){
+        //     console.log(a)
+        //     this.$store.commit('TOGGLE_TOAST_DATA',a);
+        //     setTimeout(()=>{
+        //         this.$store.commit('TOGGLE_TOAST_REMOVE');
+        //     },2000)
+        // },
         btnDialogClose(){
+            
             this.$emit('hideDialog');
+            var c = {       
+                        class: 'snackbar2',
+                        icon: 'icon-exclamation-mark',
+                        text: 'Bạn chưa thêm được nhân viên'
+                    }
+            this.$store.dispatch('addToast',c);
         },
         //Phương thức thêm/sửa dữ liệu
         btnSave(){
@@ -198,6 +224,14 @@ export default({
                     console.log(res);
                     //Đóng Dialog
                     this.$emit('hideDialog');
+                    // this.showToast = true
+                    // setTimeout(() => this.showToast = false, 2000)
+                    var a = {       
+                        class: 'snackbar',
+                        icon: 'icon-tick',
+                        text: 'Bạn đã thêm nhân viên thành công'
+                    }
+                    this.$store.dispatch('addToast',a);
                 })
                 .catch(res => { 
                     console.log(res);
@@ -211,6 +245,12 @@ export default({
                     console.log(res);
                     //Đóng Dialog
                     this.$emit('hideDialog');
+                    var b = {       
+                        class: 'snackbar',
+                        icon: 'icon-tick',
+                        text: 'Bạn đã sửa nhân viên thành công'
+                    }
+                    this.$store.dispatch('addToast',b);
                 })
                 .catch(res => { 
                     console.log(res);
@@ -319,12 +359,10 @@ export default({
     data() {
         return {
             focusFirstInput: true,
-            
+            // showToast : false
         }
     },
-    computed: {
-
-    }
+    
 })
 </script>
 

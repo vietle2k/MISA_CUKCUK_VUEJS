@@ -1,0 +1,99 @@
+<template>
+    <div>
+        <div v-for="(item) in data" :key="item.index" :class="item.class">
+        <div :class="item.icon"></div>
+        <div style="padding: 12px;font-size: 16px;">{{item.text}}</div>
+        </div>
+    </div>
+  
+</template>
+
+<script>
+export default {
+    computed:{
+        data(){
+          return this.$store.state.Toast.data;
+        }
+        
+    }
+}
+</script>
+
+<style>
+.snackbar, .snackbar3 {
+    /* visibility: hidden; */
+    min-width: 250px;
+  
+    margin-left: -125px;
+    background-color: #BAFFE7;
+    color: #000000;
+    text-align: center; 
+    font-family: GoogleSans-Regular;
+    padding: 12px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    top: 30px;
+    border-radius: 4px;
+    display: flex;
+  }
+  
+  .snackbar.show, .snackbar2.show, .snackbar3.show  {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
+  
+  @-webkit-keyframes fadein {
+    from {top: 0; opacity: 0;} 
+    to {top: 30px; opacity: 1;}
+  }
+  
+  @keyframes fadein {
+    from {top: 0; opacity: 0;}
+    to {top: 30px; opacity: 1;}
+  }
+  
+  @-webkit-keyframes fadeout {
+    from {top: 30px; opacity: 1;} 
+    to {top: 0; opacity: 0;}
+  }
+  
+  @keyframes fadeout {
+    from {top: 30px; opacity: 1;}
+    to {top: 0; opacity: 0;}
+  }
+ .icon-tick{
+    background-image: url('../../assets/icon/tick.svg');
+    background-repeat: no-repeat;;
+    background-size: contain;
+    width: 36px;
+    height: 36px;
+    background-position: center;
+ }
+ .snackbar2 {
+    /* visibility: hidden; */
+    min-width: 250px;
+  
+    margin-left: -125px;
+    background-color: #FFCECE;
+    color: #000000;
+    text-align: center; 
+    font-family: GoogleSans-Regular;
+    padding: 12px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    top: 30px;
+    border-radius: 4px;
+    display: flex;
+  }
+ .icon-exclamation-mark{
+    background-image: url('../../assets/icon/exclamation-mark.svg');
+    background-repeat: no-repeat;;
+    background-size: contain;
+    width: 36px;
+    height: 36px;
+    background-position: center;
+ }
+</style>
