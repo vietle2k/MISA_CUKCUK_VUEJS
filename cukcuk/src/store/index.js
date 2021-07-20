@@ -4,30 +4,38 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 const store = new Vuex.Store({
     state: {
-      NarbarItems: [
-          {
-              content: 'Tổng quan',
-              classItem : 'icon-dashboard',
-              toLink : '/dashboard',
-              isClick: false
-          },
-          {
-            content: 'Tổng quan',
-            classItem : 'icon-dashboard',
-            isClick: false
-          },
-          {
-            content: 'Tổng quan',
-            classItem : 'icon-dashboard',
-            isClick: false
-          },
-          {
-          content: 'Tổng quan',
-          classItem : 'icon-dashboard',
-          isClick: false
-          },
-    
-      ],
+      NarbarItems: [{
+        content: 'Tổng quan',
+        classItem: 'icon-dashboard',
+        toLink: '/dashboard',
+        isClick: false
+    },
+    {
+        content: 'Báo cáo',
+        classItem: 'icon-report',
+        toLink: '/report',
+        isClick: false
+    },
+    {
+        content: 'Danh mục khách hàng',
+        classItem: 'icon-dic-employee',
+        toLink: '/customer',
+        isClick: false
+    },
+    {
+        content: 'Danh mục nhân viên',
+        classItem: 'icon-dic-employee',
+        toLink: '/employee',
+        isClick: false
+    },
+    {
+        content: 'Thiết lập hệ thống',
+        classItem: 'icon-setting',
+        toLink: '/setting',
+        isClick: false
+    },
+
+  ],
       isToggleNavBar : false,
       Toast: {
             data : []

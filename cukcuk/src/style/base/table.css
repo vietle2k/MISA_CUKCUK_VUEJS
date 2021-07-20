@@ -1,14 +1,13 @@
-
 table {
     border-collapse: collapse;
 }
 
-table tr{
+table tr {
     border-bottom: 1px solid #bbb;
     height: 46px;
 }
 
-table thead th{
+table thead th {
     text-align: left;
     position: sticky;
     font-family: GoogleSans-Bold;
@@ -17,7 +16,8 @@ table thead th{
     border-bottom: 1px solid #bbb;
     box-shadow: 0 1px 1px -1px #bbb;
 }
-th{
+
+th {
     top: 0;
     background-color: #ffffff;
     position: -webkit-sticky;
@@ -25,16 +25,18 @@ th{
     text-overflow: ellipsis;
     white-space: nowrap;
     max-width: 100px;
-   
 }
-table thead{
+
+table thead {
     border-bottom: 1px solid #bbb;
 }
 
-th,td{
+th,
+td {
     padding-left: 10px;
     padding-right: 10px;
 }
+
 td {
     /* height: 37px;
     border-bottom: 1px solid #bbbbbb;
@@ -48,16 +50,27 @@ td {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-th:first-child, th:last-child, td:first-child, td:last-child{
+
+th:first-child,
+th:last-child,
+td:first-child,
+td:last-child {
     padding-left: 16px;
 }
 
-table tr{
+table tr {
     cursor: pointer;
 }
-table tr:hover{
+
+table tr:hover {
     background-color: #e5e5e5;
-} 
+}
+
+tr:nth-child(even) {
+    background-color: #E9EBEE;
+}
+
+
 /* table {
     border-collapse: collapse;
     

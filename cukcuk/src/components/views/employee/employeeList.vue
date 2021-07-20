@@ -121,13 +121,13 @@ export default ({
         //load dữ liệu cho trang
         axios.get("http://cukcuk.manhnv.net/v1/Employees")
         .then(res => {
-            console.log(res);
+            // console.log(res);
             this.employees = res.data;
             this.initialEmployees = res.data;
             this.employeeNumber = this.initialEmployees.length;
         })
         .catch((res) =>{
-            console.log(res);
+           console.log(res); 
         });
         
         

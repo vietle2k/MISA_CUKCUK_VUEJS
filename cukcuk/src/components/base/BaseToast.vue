@@ -1,10 +1,10 @@
 <template>
-    <div>
+    <transition>
         <div v-for="(item) in data" :key="item.index" :class="item.class">
         <div :class="item.icon"></div>
         <div style="padding: 12px;font-size: 16px;">{{item.text}}</div>
         </div>
-    </div>
+    </transition>
   
 </template>
 
@@ -43,7 +43,7 @@ export default {
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
   }
-  
+
   @-webkit-keyframes fadein {
     from {top: 0; opacity: 0;} 
     to {top: 30px; opacity: 1;}

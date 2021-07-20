@@ -284,7 +284,7 @@ export default({
                 this.employee.Salary ="";
                 return;
             }
-            console.log(this.employee.Salary);
+            // console.log(this.employee.Salary);
             var stringSalary = new String(this.employee.Salary)
             this.employee.Salary = parseInt(stringSalary.replace(/\D/g,''),10).toLocaleString();
             

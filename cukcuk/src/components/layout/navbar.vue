@@ -4,40 +4,31 @@
             <div id="sidebar"></div>
             <div id="logo"></div>
         </div>
-        <div id="Navbar_content_box">
-            <router-link class="navbar-item" tag="li" to="/dashboard">
-                <div class="navbar-icon icon-dashboard"></div>
-                <div class="navbar-text">Tổng quan</div>
-            </router-link>
-            <router-link class="navbar-item" tag="li" to="/report">
-                <div class="navbar-icon icon-report"></div>
-                <div class="navbar-text">Báo cáo</div>
-            </router-link>
-            <router-link class="navbar-item" tag="li" to="/customer">
-                <div class="navbar-icon icon-dic-employee"></div>
-                <div class="navbar-text">Danh mục khách hàng</div>
-            </router-link>
-            <router-link class="navbar-item" tag="li" to="/employee">
-                <div class="navbar-icon icon-dic-employee"></div>
-                <div class="navbar-text">Danh mục nhân viên</div>
-            </router-link>
-            <router-link class="navbar-item" tag="li" to="/setting">
-                <div class="navbar-icon icon-setting"></div>
-                <div class="navbar-text">Thiết lập hệ thống</div>
-            </router-link>
+        <div>  
+            <BaseNavbar v-for ="(value, index) in NavbarItems" :item="value" :key="index" /> 
         </div>
-        <button class="shortcut"/>
+        <!-- <button class="shortcut"/> -->
     </div>
 
 </template>
+
 <script>
+import BaseNavbar from '../base/BaseNabar.vue'
 export default {
+    components:{
+        BaseNavbar
+    },
     methods:{
 
+    },
+    computed: {
+        NavbarItems(){
+         return this.$store.state.NarbarItems;
+        }  
     }
 }
 </script>
-<style scoped>
+<style>
 #NavBar {
     width: 200px;
     height: 100%;

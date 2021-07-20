@@ -18,13 +18,13 @@
     background-repeat: no-repeat;
 }
 
-    .btn-default:hover {
-        background-color: #2FBE8E;
-    }
+.btn-default:hover {
+    background-color: #2FBE8E;
+}
 
-    .btn-default:active {
-        background-color: #01B075;
-    }
+.btn-default:active {
+    background-color: #01B075;
+}
 
 .btn-refresh {
     width: 40px;
@@ -36,12 +36,12 @@
     outline: none;
     border-radius: 4px;
     background-image: url('../../assets/icon/refresh.png');
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     background-size: auto;
     background-position: center;
 }
 
-.btn-delete{
+.btn-delete {
     width: 40px;
     height: 40px;
     position: absolute;
@@ -51,9 +51,9 @@
     cursor: pointer;
     outline: none;
     border-radius: 4px;
-    background-image: url('../../assets/icon/x.svg');
-    background-repeat:no-repeat;
-    background-size: auto;
+    background-image: url('../../assets/icon/delete.svg');
+    background-repeat: no-repeat;
+    background-size: 20px;
     background-position: center;
 }
 
@@ -64,7 +64,7 @@
     right: 0px;
     top: 0px;
     background-image: url('../../assets/icon/x.svg');
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     background-size: 24px;
     background-position: center;
     border: none;
@@ -99,50 +99,48 @@
 }
 
 .button_cancel {
-        position: absolute;
-        right: 132px;
-        height: 40px;
-        width: 100px;
-        font-size: 13px;
-        border-radius: 4px;
-        border: #bbbbbb;
-        padding-left: 16px;
-        padding-right: 16px;
+    position: absolute;
+    right: 132px;
+    height: 40px;
+    width: 100px;
+    font-size: 13px;
+    border-radius: 4px;
+    border: #bbbbbb;
+    padding-left: 16px;
+    padding-right: 16px;
 }
-    
+
 .button_cancel:hover {
-        background-color: #E9EBEE;
-        cursor: pointer;
+    background-color: #E9EBEE;
+    cursor: pointer;
 }
-    
+
 .button_cancel:active {
-            background-color: #01B075;
+    background-color: #01B075;
 }
 
-        
 #button_save {
-            position: absolute;
-            right: 24px;
-            height: 40px;
-            width: 100px;
-            font-size: 13px;
-            border-radius: 4px;
-            border: #bbbbbb; 
-            background-color: #019160;
-            color: #ffffff;
-            padding-left: 16px;
-            padding-right: 16px;
-}
-        
-#button_save:hover {
-                background-color: #2FBE8E;
-                cursor: pointer;
-}
-        
-#button_save:active {
-                background-color: #01B075;
+    position: absolute;
+    right: 24px;
+    height: 40px;
+    width: 100px;
+    font-size: 13px;
+    border-radius: 4px;
+    border: #bbbbbb;
+    background-color: #019160;
+    color: #ffffff;
+    padding-left: 16px;
+    padding-right: 16px;
 }
 
+#button_save:hover {
+    background-color: #2FBE8E;
+    cursor: pointer;
+}
+
+#button_save:active {
+    background-color: #01B075;
+}
 
 #button_confirm {
     position: absolute;
@@ -158,15 +156,14 @@
     padding-right: 16px;
 }
 
-    #button_save:hover {
-        background-color: #2FBE8E;
-        cursor: pointer;
-    }
+#button_save:hover {
+    background-color: #2FBE8E;
+    cursor: pointer;
+}
 
-    #button_save:active {
-        background-color: #01B075;
-    }
-
+#button_save:active {
+    background-color: #01B075;
+}
 
 .button_page {
     width: 30px;
@@ -181,7 +178,7 @@
     height: 18px;
     width: 15px;
     border: none;
-    outline:none;
+    outline: none;
     background-image: url('../../assets/icon/x.svg');
     background-repeat: no-repeat;
     background-size: contain;
