@@ -43,15 +43,16 @@ td {
     text-align: left;
     padding-left: 16px;
     padding: 10px; */
-    max-width: 100px;
+    max-width: 150px;
+    width: 150px;
     /* border-bottom-style: solid;
     border-bottom-color: #ccc; */
-    overflow: hidden;
+    /* overflow: hidden; */
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-th:first-child,
+::web th:first-child,
 th:last-child,
 td:first-child,
 td:last-child {
@@ -66,9 +67,11 @@ table tr:hover {
     background-color: #e5e5e5;
 }
 
+
+/* 
 tr:nth-child(even) {
     background-color: #E9EBEE;
-}
+} */
 
 
 /* table {

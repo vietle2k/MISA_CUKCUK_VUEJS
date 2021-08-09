@@ -9,27 +9,59 @@
             </div>
         </div>
         <div class="toolbar">
-            <input
+            <input id="mySelect"
                 type="text"
                 class="input-search"
                 placeholder="Tìm kiếm theo Mã, Tên hoặc Số điện thoại"
                 v-model="searchdata"
                 @keyup="SearchData()"
             />
-            
-            <select class="select_box" v-model="selectedDepartmentId" @change="SelectDepartment()" >
+           
+            <!-- <BaseComboBox style="margin-left: 16px;" :text="this.selectedEmployee.DepartmentName"  type="department" @Choose="Choose"/> -->
+            <!-- <select class="select_box" v-model="selectedDepartmentId" @change="SelectDepartment()" >
                 <option value="" disabled selected hidden>Tất cả phòng ban</option>
                 <option value="142cb08f-7c31-21fa-8e90-67245e8b283e">Phòng Marketing</option>
                 <option value="4e272fc4-7875-78d6-7d32-6a1673ffca7c">Phòng Công nghệ</option>
                 <option value="17120d02-6ab5-3e43-18cb-66948daf6128">Phòng đào tạo</option>
                 <option value="469b3ece-744a-45d5-957d-e8c757976496">Phòng Nhân sự</option>
-            </select>
-            <select class="select_box" v-model="selectedPositionId" @change="SelectPosition()" >
+            </select> -->
+     
+             <v-select
+                    label="departmentName"
+                    v-model="selectedDepartmentId"
+                    :options="select.departmentOptions"
+                    :reduce = "departmentName => departmentName.departmentId"
+                    :searchable = "false"
+                    :placeholder = "'Tất cả phòng ban'"
+                    :appendToBody="true"
+                   
+                >
+                    <template v-slot:option="option">
+                        <span class="option-icon"></span>
+                        {{ option.departmentName }}
+                    </template>
+                </v-select>
+            <v-select
+                    label="positionName"
+                    
+                    :options="select.positionOptions"
+                    :reduce = "positionName => positionName.positionId"
+                    :searchable = "false"
+                    :placeholder = "'Tất cả vị trí'"
+                    :appendToBody="true"
+                   
+                >
+                    <template v-slot:option="option">
+                        <span class="option-icon"></span>
+                        {{ option.positionName }}
+                    </template>
+                </v-select>
+            <!-- <select class="select_box" v-model="selectedPositionId" @change="SelectPosition()" >
                 <option value="" disabled selected hidden>Tất cả vị trí</option>
                 <option value="148ed882-32b8-218e-9c20-39c2f00615e8">Nhân viên Marketing</option>
                 <option value="25c6c36e-1668-7d10-6e09-bf1378b8dc91">Thu ngân</option>
                 <option value="3700cc49-55b5-69ea-4929-a2925c0f334d">Giám đốc</option>
-            </select>
+            </select> -->
             <button class="btn-refresh" @click="loadData()"></button>
             <button class="btn-delete" @click="btnDeleteData()"></button>
         </div>
@@ -47,11 +79,11 @@
                         <th>Phòng ban</th>
                         <th style="text-align: right;">Mức lương cơ bản</th>
                         <th>Tình trạng công việc</th>
-                        <th :class="{'deleteItems': !isDelete}">Xóa</th>
+                        <!-- <th :class="{'deleteItems': !isDelete}">Xóa</th> -->
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="employee in filteredEmployee" :key='employee.EmployeeId' @dblclick="rowOnDblClick(employee.EmployeeId)" >
+                    <tr v-for="employee in filteredEmployee" :key='employee.EmployeeId' @dblclick="rowOnDblClick(employee)" @click="rowOnClick(employee.EmployeeId)">
                         <td>{{employee.EmployeeCode}}</td>
                         <td>{{employee.FullName}}</td>
                         <td>{{employee.GenderName}}</td>
@@ -63,7 +95,7 @@
                         <td>{{employee.DepartmentName}}</td>
                         <td style="text-align: right;">{{SalaryFormat(employee.Salary)}}</td>
                         <td>{{workStatusFormat(employee.WorkStatus)}}</td>
-                        <td :class="{'deleteItems': !isDelete}" style="text-align: center;"><button class="button_delete_x" @click="buttonDeleteOnClick(employee.EmployeeId)"></button></td>
+                        <!-- <td :class="{'deleteItems': !isDelete}" style="text-align: center;"><button class="button_delete_x" @click="buttonDeleteOnClick(employee.EmployeeId)"></button></td> -->
                     </tr>
                 </tbody>
             </table>
@@ -109,36 +141,84 @@
 import EmployeeDetail from './employeeDetail.vue'
 import EmployeeDelete from './employeeDelete.vue'
 import Pagination from '../../base/pagination.vue'
+// import BaseComboBox from '../../base/BaseCombobox.vue'
 import axios from 'axios'
 import $ from 'jquery'
 export default ({
     components: {
         EmployeeDetail,
         EmployeeDelete,
-        Pagination
+        Pagination,
+        // BaseComboBox
     },
     created() {
         //load dữ liệu cho trang
-        axios.get("http://cukcuk.manhnv.net/v1/Employees")
+        axios.get("https://localhost:44347/api/v1/Employees")
         .then(res => {
-            // console.log(res);
+            console.log(res);
             this.employees = res.data;
             this.initialEmployees = res.data;
-            this.employeeNumber = this.initialEmployees.length;
+            // this.employeeNumber = this.initialEmployees.length;
         })
         .catch((res) =>{
            console.log(res); 
         });
-        
+        axios.get("http://cukcuk.manhnv.net/api/Department")
+        .then(res =>{
+            // console.log(res.data);
+            // this.select.departmentOptions = res.data;
+            // this.select.departmentOptions.unshift({
+            //             departmentId: null,
+            //             departmentName: "Tất cả phòng ban"
+            //         });
+            for(var i = 0 ; i < res.data.length; i++){
+                var a = {
+                    id: res.data[i].DepartmentId,
+                    name: res.data[i].DepartmentName,
+                    isClick: false,
+                    isHover: false,
+                    
+                }
+                this.$store.commit('TOGGLE_PUSH_DEPARTMENT',a);
+            }
+        }).catch((res) =>{
+           console.log(res); 
+        });
+        axios.get("http://cukcuk.manhnv.net/v1/Positions")
+        .then(res =>{
+            for(var i = 0 ; i < res.data.length; i++){
+                var a = {
+                    id: res.data[i].PositionId,
+                    name: res.data[i].PositionName,
+                    isClick: false,
+                    isHover: false
+                }
+                this.$store.commit('TOGGLE_PUSH_POSITION',a);
+            }
+        }).catch((res) =>{
+           console.log(res); 
+        });
         
     },
     props: {
 
     },
     methods: {
+        // Choose(type,id,content){
+        //     switch(type) {
+        //         case "department":
+        //             this.employee.DepartmentId = id;
+        //             this.employee["DepartmentName"] = content;
+        //             console.log(this.selectedEmployee.DepartmentName)
+        //             break;
+        //         case "position":
+        //             this.selectedEmployee.PositionId = id;
+        //             break;
+        //     }
+        // },
         loadData(){
             //load dữ liệu cho trang
-            axios.get("http://cukcuk.manhnv.net/v1/Employees")
+            axios.get("https://localhost:44347/api/v1/Employees")
             .then(res => {
                 console.log(res);
                 this.employees = res.data;
@@ -156,10 +236,11 @@ export default ({
         btnAddEmployee(){
             this.isShowDialogEmployee = true;
             //Mã nhân viên tự động có và tự tăng theo tiêu chí 
-            axios.get("http://cukcuk.manhnv.net/v1/Employees/NewEmployeeCode")
+            axios.get("https://localhost:44347/api/v1/Employees/NewEmployeeCode")
             .then(res =>{
                 this.selectedEmployee  = {};
                 this.selectedEmployee.EmployeeCode = res.data;
+                
             })
             
             this.$refs.dialog.focusInput();
@@ -176,22 +257,24 @@ export default ({
         hideConfirmBox(){
             this.isShowConfirmBox = false;
             this.loadData();
-            this.isDelete = false;
+            // this.isDelete = false;
         },
         //hiện thông tin chi tiết (employee Detail)
-        rowOnDblClick(employeeId){
+        rowOnDblClick(employee){
             //Hiện Dialog
             this.isShowDialogEmployee = true;
             //Lấy id của bản ghi được chọn
-
+            // console.log(employee);
+            this.selectedEmployee = employee;
             //Get dữ liệu từ APi về phù hợp với bản ghi
-            axios.get("http://cukcuk.manhnv.net/v1/Employees/" + employeeId)
-            .then(res => {
-                this.selectedEmployee = res.data;
-            })
-            .catch(res => {
-                console.log(res);
-            })
+            // axios.get("http://cukcuk.manhnv.net/v1/Employees/" + employeeId)
+            // .then(res => {
+            //     this.selectedEmployee = res.data;
+            //     console.log(res.data)
+            // })
+            // .catch(res => {
+            //     console.log(res);
+            // })
             //Binding thông tin của nhân viên
 
             //Gán formmode = "edit" để phân biệt với thêm dữ liệu
@@ -221,17 +304,18 @@ export default ({
         },
         //format salary
         SalaryFormat(Salary) {
-            if (Salary != null) Salary = Salary.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+            if (Salary != null) Salary = Salary.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
             return Salary;
         },
         //Xóa nhân viên
         btnDeleteData(){
-            this.isDelete = true;
+            // this.isDelete = true;
+             this.isShowConfirmBox = true;
             
         },
-        buttonDeleteOnClick(employeeId){
+        rowOnClick(employeeId){
             //Get dữ liệu từ APi về phù hợp với bản ghi
-            axios.get("http://cukcuk.manhnv.net/v1/Employees/" + employeeId)
+            axios.get("https://localhost:44347/api/v1/Employees/" + employeeId)
             .then(res => {
                 this.selectedEmployee = res.data;
             })
@@ -239,7 +323,7 @@ export default ({
                 console.log(res);
             })
             //Hiện confirmBox
-            this.isShowConfirmBox = true;
+            // this.isShowConfirmBox = true;
         }, 
 
         //Tìm kiếm thông tin
@@ -253,7 +337,6 @@ export default ({
         SelectDepartment(){
             //Chạy hàm filter với initialEmployees, vì dữ liệu từ initialEmployees không đổi nên có thể chọn filter nhiều lần
             this.employees = this.filter(this.initialEmployees, 'DepartmentId', this.selectedDepartmentId); 
-            
             
         },
         //Chọn filter vị trí
@@ -282,6 +365,49 @@ export default ({
     },
     data() {
         return {
+            select: {
+                departmentOptions: [
+                    {
+                        departmentName: 'Tất cả phòng ban',
+                        departmentId: 6,
+                    },{
+                        departmentName: 'Phòng đào tạo',
+                        departmentId: 1,
+                    },
+                    {
+                        departmentName: 'Phòng marketing',
+                        departmentId: 0,
+                    },
+                    {
+                        departmentName: 'Phòng Công nghệ',
+                        departmentId: 4,
+                    },
+                    {
+                        departmentName: 'Phòng Nhân sự',
+                        departmentId: 3,
+                    },
+                    ],
+                positionOptions: [{
+                        positionName: 'Tất cả vị trí',
+                       positionId: 0
+                    },{
+                        positionName: 'Giám đốc',
+                       positionId: 1,
+                    },
+                    {
+                        positionName: 'Thu ngân',
+                       positionId: 2,
+                    },
+                    {
+                        positionName: 'Trưởng phòng',
+                       positionId: 3,
+                    },
+                    {
+                        positionName: 'Phó Phòng',
+                       positionId: 4,
+                    },]
+                
+            },
             //dữ liệu đầu vào (axios.get) -> để gán dữ liệu
             employees: [],
             //Số lượng bản ghi được lấy về
@@ -295,7 +421,7 @@ export default ({
             
             isShowDialogEmployee: false,
             DetailFormMode: "add",
-            isDelete: false,
+            // isDelete: false,
             isShowConfirmBox: false,
             //dữ liệu được nhập vào từ search bar
             searchdata: "",
@@ -310,12 +436,14 @@ export default ({
 
             //Số lượng bản ghi được hiển thị trong 1 trang
             perPage: 15,
+            
         }
     },
 })
 </script>
 
 <style scoped>
+
 .page-title {
   height: 40px;
   display: flex;

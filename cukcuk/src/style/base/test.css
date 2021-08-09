@@ -1,0 +1,11 @@
+#mySelect .v-select {
+    width: 234px;
+    height: 36px;
+    margin-left: 6px !important;
+}
+
+#mySelect .v-select .vs__dropdown-toggle {
+    width: 234px !important;
+    height: 36px !important;
+    margin-left: 6px !important;
+}

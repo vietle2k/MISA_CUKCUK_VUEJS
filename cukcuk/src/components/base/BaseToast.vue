@@ -1,5 +1,5 @@
 <template>
-    <transition>
+    <transition >
         <div v-for="(item) in data" :key="item.index" :class="item.class">
         <div :class="item.icon"></div>
         <div style="padding: 12px;font-size: 16px;">{{item.text}}</div>
@@ -7,7 +7,7 @@
     </transition>
   
 </template>
-
+//name="slide-fade"
 <script>
 export default {
     computed:{
@@ -20,6 +20,17 @@ export default {
 </script>
 
 <style>
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
+}
 .snackbar, .snackbar3 {
     /* visibility: hidden; */
     min-width: 250px;

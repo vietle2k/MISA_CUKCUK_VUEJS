@@ -39,7 +39,7 @@ export default ({
         },
         //Thực hiện xóa khách hàng
         btnConfirmDelete() {
-            axios.delete("http://cukcuk.manhnv.net/v1/Employees/" + this.employee.EmployeeId)
+            axios.delete("https://localhost:44347/api/v1/Employees/" + this.employee.EmployeeId)
             .then(res =>{
                 console.log(res);
                 this.$emit('hideConfirmBox');

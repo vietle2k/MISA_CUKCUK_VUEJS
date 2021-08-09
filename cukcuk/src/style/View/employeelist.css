@@ -1,0 +1,77 @@
+.page-title {
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.page-title .page-right {
+    position: absolute;
+    right: 24px;
+}
+
+.page-title .page-left {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.toolbar {
+    margin-top: 16px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    height: 42px;
+}
+
+ ::placeholder {
+    font-size: 12px;
+}
+
+.select_box {
+    height: 40px;
+    width: 220px;
+    margin-left: 12px;
+    margin-right: 12px;
+    padding-left: 20px;
+    border-radius: 4px;
+    border: 2px solid #dedede;
+}
+
+.select_box:focus {
+    border: 1px solid;
+    outline: none;
+    border-color: #019160;
+}
+
+.grid {
+    position: absolute;
+    right: 24px;
+    left: 24px;
+    bottom: 60px;
+    top: 128px;
+    overflow-y: auto;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 0px;
+    right: 24px;
+    left: 24px;
+    height: 60px;
+    border-top: 1px solid #bbbbbb;
+}
+
+.paging-record-info {
+    position: absolute;
+    left: 16px;
+}
+
+.paging-record-option {
+    position: absolute;
+    right: 16px;
+}
+
+.deleteItems {
+    display: none;
+}
