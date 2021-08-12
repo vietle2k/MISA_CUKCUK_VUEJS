@@ -42,7 +42,7 @@
                                     :inputAttributes="{placeholder: 'dd/mm/yyyy'}"></date-pick>
                             </div>
                             <div>
-                                <div style="display:flex;">Giới tính</div>
+                                <div style="display:flex;margin-left: 12px">Giới tính</div>
                                 <!-- <select class="select_box" v-model="employee.Gender">
                                     <option value="1">Nam</option>
                                     <option value="0">Nữ</option>
@@ -333,13 +333,13 @@ export default({
                 return "";
             }
             var formattedDate = new Date(unformatDate);
-                var StringMonth = formattedDate.getMonth() + 1;
-                if (StringMonth < 10) StringMonth = '0' + StringMonth;
-                var StringDate = formattedDate.getDate();
-                if (StringDate < 10) StringDate = '0' + StringDate;
-                var StringYear = formattedDate.getFullYear();
+                var stringMonth = formattedDate.getMonth() + 1;
+                if (stringMonth < 10) stringMonth = '0' + stringMonth;
+                var stringDate = formattedDate.getDate();
+                if (stringDate < 10) stringDate = '0' + stringDate;
+                var stringYear = formattedDate.getFullYear();
 
-                return StringYear + '-' + StringMonth + '-' + StringDate;
+                return stringYear + '-' + stringMonth + '-' + stringDate;
                
         },
         //auto focus vào ô input đầu tiên sau khi hiện dialog
@@ -476,7 +476,7 @@ export default({
 </script>
 
 <style scoped>
-
+@import url('../../../style/base/test.css');
 /* v-select .vs__dropdown-toggle {
     background: red !important;
   } */ 
@@ -594,7 +594,7 @@ export default({
     width: 212px;
     margin-right: 12px;
     margin-top:4px;
-    margin-bottom:4px;
+    margin-bottom:6px;
     border-radius: 5px;
     border: 2px solid #dedede;
     padding-left: 16px;

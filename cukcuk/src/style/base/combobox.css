@@ -49,7 +49,7 @@
 
 .vs__dropdown-menu .option-icon {
     padding-left: 40px;
-    /* background-image: url('../../assets/icon/tick.svg'); */
+    /* background-image: url('../../assets/icon/check.svg'); */
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -62,12 +62,13 @@
 }
 
 .vs__dropdown-menu *:hover {
-    background-color: #e5e5e5 !important;
+    background-color: #dedede !important;
 }
 
-.vs__dropdown-menu *:focus:after {
+
+/* .vs__dropdown-menu *:focus:after {
     background-color: #019160 !important;
-}
+} */
 
 .vs__dropdown-menu {
     top: 0px;

@@ -78,7 +78,8 @@
     border: 1px solid rgba(0, 0, 0, .15);
 }
 
-.vdpComponent input {
+
+/* .vdpComponent input {
     height: 36px !important;
     width: 232px !important;
     margin-right: 24px !important;
@@ -90,4 +91,21 @@
     background-color: transparent !important;
     outline: none !important;
     box-sizing: border-box !important;
+} */
+
+.vdpComponent input {
+    height: 36px !important;
+    width: 232px !important;
+    margin-top: 4px !important;
+    margin-bottom: 4px !important;
+    border-radius: 5px !important;
+    border: 2px solid #dedede !important;
+    padding-left: 16px !important;
+    background-color: transparent !important;
+    outline: none !important;
+    box-sizing: border-box !important;
+}
+
+.vdpComponent {
+    width: 232px !important;
 }

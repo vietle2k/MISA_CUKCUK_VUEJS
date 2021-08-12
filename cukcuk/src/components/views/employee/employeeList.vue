@@ -34,7 +34,7 @@
                     :searchable = "false"
                     :placeholder = "'Tất cả phòng ban'"
                     :appendToBody="true"
-                   
+                    @input = "SelectDepartment()"
                 >
                     <template v-slot:option="option">
                         <span class="option-icon"></span>
@@ -43,12 +43,13 @@
                 </v-select>
             <v-select
                     label="positionName"
-                    
+                    v-model="selectedPositionId"
                     :options="select.positionOptions"
                     :reduce = "positionName => positionName.positionId"
                     :searchable = "false"
                     :placeholder = "'Tất cả vị trí'"
                     :appendToBody="true"
+                    @input = "SelectPosition()"
                    
                 >
                     <template v-slot:option="option">
@@ -72,7 +73,7 @@
                         <th>Mã nhân viên</th>
                         <th>Họ và tên</th>
                         <th>Giới tính</th>
-                        <th>Ngày sinh</th>
+                        <th style="text-align: center;">Ngày sinh</th>
                         <th>Điện thoại</th>
                         <th>Email</th>
                         <th>Chức vụ</th>
@@ -83,11 +84,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="employee in filteredEmployee" :key='employee.EmployeeId' @dblclick="rowOnDblClick(employee)" @click="rowOnClick(employee.EmployeeId)">
+                    <tr  v-for="employee in filteredEmployee" :key='employee.EmployeeId' @dblclick="rowOnDblClick(employee)" @click="rowOnClick(employee.EmployeeId)">
                         <td>{{employee.EmployeeCode}}</td>
                         <td>{{employee.FullName}}</td>
                         <td>{{employee.GenderName}}</td>
-                        <td>{{DateFormat(employee.DateOfBirth)}}</td>
+                        <td style="text-align: center;">{{DateFormat(employee.DateOfBirth)}}</td>
                         <td>{{employee.PhoneNumber}}</td>
                         
                         <td>{{employee.Email}}</td>
@@ -155,7 +156,7 @@ export default ({
         //load dữ liệu cho trang
         axios.get("https://localhost:44347/api/v1/Employees")
         .then(res => {
-            console.log(res);
+            // console.log(res);
             this.employees = res.data;
             this.initialEmployees = res.data;
             // this.employeeNumber = this.initialEmployees.length;
@@ -291,21 +292,21 @@ export default ({
         },
 
         //format date of birth
-        DateFormat(DateOfBirth) {
+        DateFormat(date) {
             
          
-            var newDate = new Date(DateOfBirth);
-            var StringDate = newDate.getDate();
-            if (StringDate < 10) StringDate = '0' + StringDate;
-            var StringMonth = newDate.getMonth() + 1;
-            if (StringMonth < 10) StringMonth = '0' + StringMonth;
-            var StringYear = newDate.getFullYear();
-            return StringDate + '/' + StringMonth + '/' + StringYear;
+            var newDate = new Date(date);
+            var stringDate = newDate.getDate();
+            if (stringDate < 10) stringDate = '0' + stringDate;
+            var stringMonth = newDate.getMonth() + 1;
+            if (stringMonth < 10) stringMonth = '0' + stringMonth;
+            var stringYear = newDate.getFullYear();
+            return stringDate + '/' + stringMonth + '/' + stringYear;
         },
         //format salary
-        SalaryFormat(Salary) {
-            if (Salary != null) Salary = Salary.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
-            return Salary;
+        SalaryFormat(salary) {
+            if (salary != null) salary = salary.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+            return salary;
         },
         //Xóa nhân viên
         btnDeleteData(){
@@ -335,9 +336,11 @@ export default ({
         },
         //Chọn filter phòng ban
         SelectDepartment(){
+          
+            //  console.log(this.initialEmployees.slice(this.perPage * this.currentPage - this.perPage,  this.perPage * this.currentPage));
             //Chạy hàm filter với initialEmployees, vì dữ liệu từ initialEmployees không đổi nên có thể chọn filter nhiều lần
             this.employees = this.filter(this.initialEmployees, 'DepartmentId', this.selectedDepartmentId); 
-            
+            // console.log(this.employees);
         },
         //Chọn filter vị trí
         SelectPosition(){
@@ -360,8 +363,12 @@ export default ({
     computed:{
         //limit hiển thị số lượng bản ghi mỗi trang tùy thuộc vào currentpage và perpage (perpage = 10)
         filteredEmployee: function(){
-            return this.employees.slice(this.perPage * this.currentPage - this.perPage,  this.perPage * this.currentPage);
-        }
+            
+              return this.employees.slice(this.perPage * this.currentPage - this.perPage,  this.perPage * this.currentPage);
+        },
+        // data: function(){
+        //     return this.initialEmployees.slice(this.perPage * this.currentPage - this.perPage,  this.perPage * this.currentPage);
+        // }
     },
     data() {
         return {
@@ -369,22 +376,22 @@ export default ({
                 departmentOptions: [
                     {
                         departmentName: 'Tất cả phòng ban',
-                        departmentId: 6,
+                        departmentId: 0,
                     },{
                         departmentName: 'Phòng đào tạo',
-                        departmentId: 1,
+                        departmentId: '17120d02-6ab5-3e43-18cb-66948daf6128',
                     },
                     {
-                        departmentName: 'Phòng marketing',
-                        departmentId: 0,
+                        departmentName: 'Phòng Marketting',
+                        departmentId: '427e96d3-ca1b-4fbd-99a3-6967baf3f106',
                     },
                     {
                         departmentName: 'Phòng Công nghệ',
-                        departmentId: 4,
+                        departmentId: '4e272fc4-7875-78d6-7d32-6a1673ffca7c',
                     },
                     {
                         departmentName: 'Phòng Nhân sự',
-                        departmentId: 3,
+                        departmentId: '469b3ece-744a-45d5-957d-e8c757976496',
                     },
                     ],
                 positionOptions: [{
@@ -392,19 +399,19 @@ export default ({
                        positionId: 0
                     },{
                         positionName: 'Giám đốc',
-                       positionId: 1,
+                       positionId: '30d41e52-5e66-72bc-6c1c-b47866e0b131',
                     },
                     {
-                        positionName: 'Thu ngân',
-                       positionId: 2,
+                        positionName: 'Nhân viên',
+                       positionId: '548dce5f-5f29-4617-725d-e2ec561b0f41',
                     },
                     {
                         positionName: 'Trưởng phòng',
-                       positionId: 3,
+                       positionId: '5bd71cda-209f-2ade-54d1-35c781481818',
                     },
                     {
                         positionName: 'Phó Phòng',
-                       positionId: 4,
+                       positionId: '589edf01-198a-4ff5-958e-fb52fd75a1d4',
                     },]
                 
             },
@@ -443,6 +450,7 @@ export default ({
 </script>
 
 <style scoped>
+@import url('../../../style/base/baseCom.css');
 
 .page-title {
   height: 40px;

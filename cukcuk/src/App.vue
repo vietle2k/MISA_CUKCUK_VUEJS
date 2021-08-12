@@ -29,7 +29,7 @@ export default {
 @import './style/base/input.css';
 @import url('./style/base/datepicker.css');
 @import url('./style/base/combobox.css');
-@import url('./style/base/test.css');
+
 body {
   font-family: GoogleSans-Regular;
   font-size: 13px;

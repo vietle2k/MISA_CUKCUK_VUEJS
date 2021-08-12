@@ -1,26 +1,3 @@
-/* #mySelect .v-select {
-    width: 234px;
-    height: 36px;
-    margin-left: 6px !important;
-} */
-
-.dialog_middle .v-select,
-.dialog_middle .vs__dropdown-toggle {
-    width: 234px !important;
-    height: 36px !important;
-    margin-left: 6px !important;
-    /* margin-top: 4px !important; */
-}
-
-.dialog_middle .vs__dropdown-menu {
-    margin-left: 6px !important;
-    margin-top: 40px !important;
-}
-
-.dialog_middle .vs--open .vs__selected {
-    top: 5px !important;
-}
-
 .v-select {
     position: relative;
     font-family: inherit
@@ -345,7 +322,10 @@
     background-size: contain;
 }
 
+.vs--open .vs__selected {
+    top: 10px !important;
+}
 
-/* .vs__dropdown-menu {
+.vs__dropdown-menu {
     top: 0px;
-} */
+}
